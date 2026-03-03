@@ -1,0 +1,19 @@
+# Repeatability policy for progression simulation and runtime evaluators.
+# Default: decisions are non-repeatable within a short temporal window.
+
+policy:
+  default_repeatability: non-repeatable
+  short_window_steps: 3
+  null_prevention_fallback: allow-lowest-irreversibility-learn-only
+
+repeatable_decisions:
+  - design-operating-system-routines
+  - validate-core-contract-literacy
+
+repeatability_constraints:
+  - decision_id: validate-core-contract-literacy
+    min_steps_between_repeats: 2
+    requires_unresolved_deficit_category: knowledge
+  - decision_id: design-operating-system-routines
+    min_steps_between_repeats: 2
+    requires_unresolved_deficit_category: time

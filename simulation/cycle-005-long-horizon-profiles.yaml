@@ -1,0 +1,54 @@
+- profile_id: fast-scaling-founder
+  description: rapid growth pursuit with constrained recovery bandwidth
+  constraints:
+    time: { current_level: 0.32, required_level: 0.40, trend: degrading, evidence_age_days: 3, confidence: 0.83 }
+    money: { current_level: 0.61, required_level: 0.55, trend: improving, evidence_age_days: 5, confidence: 0.85 }
+    knowledge: { current_level: 0.68, required_level: 0.65, trend: improving, evidence_age_days: 9, confidence: 0.77 }
+    risk: { current_level: 0.64, required_level: 0.70, trend: degrading, evidence_age_days: 4, confidence: 0.79 }
+    legal_exposure: { current_level: 0.71, required_level: 0.75, trend: stable, evidence_age_days: 5, confidence: 0.82 }
+    cognitive_load: { current_level: 0.44, required_level: 0.50, trend: degrading, evidence_age_days: 2, confidence: 0.86 }
+    emotional_maturity: { current_level: 0.67, required_level: 0.72, trend: degrading, evidence_age_days: 2, confidence: 0.80 }
+
+- profile_id: risk-seeking-serial-operator
+  description: high risk appetite with repeated expansion behavior
+  constraints:
+    time: { current_level: 0.48, required_level: 0.40, trend: stable, evidence_age_days: 6, confidence: 0.80 }
+    money: { current_level: 0.42, required_level: 0.55, trend: degrading, evidence_age_days: 7, confidence: 0.82 }
+    knowledge: { current_level: 0.66, required_level: 0.65, trend: stable, evidence_age_days: 12, confidence: 0.75 }
+    risk: { current_level: 0.79, required_level: 0.70, trend: improving, evidence_age_days: 4, confidence: 0.81 }
+    legal_exposure: { current_level: 0.68, required_level: 0.75, trend: degrading, evidence_age_days: 6, confidence: 0.78 }
+    cognitive_load: { current_level: 0.51, required_level: 0.50, trend: stable, evidence_age_days: 3, confidence: 0.82 }
+    emotional_maturity: { current_level: 0.70, required_level: 0.72, trend: stable, evidence_age_days: 3, confidence: 0.78 }
+
+- profile_id: conservative-saver
+  description: safety-first actor prioritizing reserves and low volatility
+  constraints:
+    time: { current_level: 0.58, required_level: 0.40, trend: stable, evidence_age_days: 8, confidence: 0.81 }
+    money: { current_level: 0.72, required_level: 0.55, trend: improving, evidence_age_days: 10, confidence: 0.87 }
+    knowledge: { current_level: 0.62, required_level: 0.65, trend: improving, evidence_age_days: 11, confidence: 0.74 }
+    risk: { current_level: 0.74, required_level: 0.70, trend: stable, evidence_age_days: 7, confidence: 0.80 }
+    legal_exposure: { current_level: 0.79, required_level: 0.75, trend: stable, evidence_age_days: 5, confidence: 0.86 }
+    cognitive_load: { current_level: 0.61, required_level: 0.50, trend: stable, evidence_age_days: 3, confidence: 0.83 }
+    emotional_maturity: { current_level: 0.76, required_level: 0.72, trend: stable, evidence_age_days: 3, confidence: 0.82 }
+
+- profile_id: compliance-heavy-operator
+  description: legally constrained operator in complex regulatory context
+  constraints:
+    time: { current_level: 0.43, required_level: 0.40, trend: stable, evidence_age_days: 5, confidence: 0.80 }
+    money: { current_level: 0.57, required_level: 0.55, trend: stable, evidence_age_days: 8, confidence: 0.83 }
+    knowledge: { current_level: 0.71, required_level: 0.65, trend: improving, evidence_age_days: 9, confidence: 0.79 }
+    risk: { current_level: 0.67, required_level: 0.70, trend: stable, evidence_age_days: 6, confidence: 0.78 }
+    legal_exposure: { current_level: 0.83, required_level: 0.75, trend: stable, evidence_age_days: 4, confidence: 0.90 }
+    cognitive_load: { current_level: 0.49, required_level: 0.50, trend: degrading, evidence_age_days: 2, confidence: 0.84 }
+    emotional_maturity: { current_level: 0.73, required_level: 0.72, trend: stable, evidence_age_days: 2, confidence: 0.80 }
+
+- profile_id: over-leveraged-growth-seeker
+  description: aggressive growth path with debt pressure and fragile resilience
+  constraints:
+    time: { current_level: 0.39, required_level: 0.40, trend: degrading, evidence_age_days: 4, confidence: 0.79 }
+    money: { current_level: 0.24, required_level: 0.55, trend: degrading, evidence_age_days: 6, confidence: 0.81 }
+    knowledge: { current_level: 0.64, required_level: 0.65, trend: stable, evidence_age_days: 10, confidence: 0.75 }
+    risk: { current_level: 0.55, required_level: 0.70, trend: degrading, evidence_age_days: 5, confidence: 0.77 }
+    legal_exposure: { current_level: 0.63, required_level: 0.75, trend: degrading, evidence_age_days: 7, confidence: 0.79 }
+    cognitive_load: { current_level: 0.42, required_level: 0.50, trend: degrading, evidence_age_days: 2, confidence: 0.85 }
+    emotional_maturity: { current_level: 0.65, required_level: 0.72, trend: degrading, evidence_age_days: 2, confidence: 0.78 }

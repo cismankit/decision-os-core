@@ -1,0 +1,133 @@
+# Temporal impact mapping for high-irreversibility decisions.
+# High-irreversibility threshold for this model: irreversibility_score >= 0.67
+
+- decision_id: approve-risk-cap-policy
+  irreversibility_score: 0.67
+  permanent_constraint_shifts:
+    risk:
+      required_level_delta: 0.05
+      confidence_floor: 0.75
+    legal_exposure:
+      required_level_delta: 0.03
+  compounding_risks:
+    - risk-policy-drift
+  options_closed:
+    - unbounded-capital-allocation
+    - unbounded-liability-commitment
+  temporal_effects:
+    immediate:
+      risk.current_level_delta: 0.04
+      legal_exposure.current_level_delta: 0.02
+    delayed:
+      steps: 2
+      effect: risk volatility reduced if policy remains in force
+
+- decision_id: choose-credit-exposure-policy
+  irreversibility_score: 0.73
+  permanent_constraint_shifts:
+    money:
+      required_level_delta: 0.06
+    risk:
+      required_level_delta: 0.05
+  compounding_risks:
+    - debt-service-pressure
+    - refinancing-fragility
+  options_closed:
+    - debt-free-growth-path
+    - high-volatility-income-experiments
+  temporal_effects:
+    immediate:
+      money.current_level_delta: -0.05
+      risk.current_level_delta: -0.03
+    delayed:
+      steps: 3
+      effect: debt load compounds if income stability remains below threshold
+
+- decision_id: define-ownership-structure-path
+  irreversibility_score: 0.78
+  permanent_constraint_shifts:
+    legal_exposure:
+      required_level_delta: 0.07
+    compliance_capacity_proxy:
+      required_level_delta: 0.05
+  compounding_risks:
+    - governance-friction
+    - restructuring-cost
+  options_closed:
+    - instant-ownership-reversal
+    - governance-free-operations
+  temporal_effects:
+    immediate:
+      legal_exposure.current_level_delta: -0.02
+      knowledge.current_level_delta: -0.01
+    delayed:
+      steps: 2
+      effect: compliance burden rises with structural complexity
+
+- decision_id: commit-identity-linked-public-positioning
+  irreversibility_score: 0.81
+  permanent_constraint_shifts:
+    emotional_maturity:
+      required_level_delta: 0.06
+    risk:
+      required_level_delta: 0.04
+  compounding_risks:
+    - reputational-lock-in
+    - narrative-inflexibility
+  options_closed:
+    - low-visibility-pivot
+    - anonymous-strategy-shift
+  temporal_effects:
+    immediate:
+      emotional_maturity.current_level_delta: -0.04
+      risk.current_level_delta: -0.02
+    delayed:
+      steps: 4
+      effect: optionality decays if commitments become externally reinforced
+
+- decision_id: decide-major-liability-commitment
+  irreversibility_score: 0.84
+  permanent_constraint_shifts:
+    money:
+      required_level_delta: 0.10
+    legal_exposure:
+      required_level_delta: 0.08
+    risk:
+      required_level_delta: 0.07
+  compounding_risks:
+    - liability-escalation
+    - covenant-breach-risk
+  options_closed:
+    - rapid-downscale-path
+    - low-obligation-operating-mode
+  temporal_effects:
+    immediate:
+      money.current_level_delta: -0.08
+      risk.current_level_delta: -0.05
+      legal_exposure.current_level_delta: -0.03
+    delayed:
+      steps: 5
+      effect: liability lock-in materially reduces strategic flexibility
+
+- decision_id: launch-domain-specific-execution-plan
+  irreversibility_score: 0.86
+  permanent_constraint_shifts:
+    time:
+      required_level_delta: 0.08
+    cognitive_load:
+      required_level_delta: 0.07
+    risk:
+      required_level_delta: 0.05
+  compounding_risks:
+    - execution-drift
+    - coordination-friction
+  options_closed:
+    - pre-launch-restructuring-window
+    - no-commitment-observation-mode
+  temporal_effects:
+    immediate:
+      time.current_level_delta: -0.07
+      cognitive_load.current_level_delta: -0.06
+    delayed:
+      steps: 3
+      effect: compounding workload can degrade emotional stability without recovery buffers

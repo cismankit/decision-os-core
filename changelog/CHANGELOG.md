@@ -371,3 +371,78 @@ Use this template for every update:
   - Rationale: document explicit cycle-level verification of modification, deprecation, and contradiction workflow readiness.
   - Impact: confirms evolution governance remains certifiable without additional protocol drift.
   - Migration Notes: continue one hardening review record per certification cycle.
+
+## [0.5.0] - 2026-03-02
+### Changed
+- Artifact: `engine/next-best-decision-spec.md`
+  - Change Class: `threshold-tuning`
+  - Rationale: couple optionality scoring to deterministic selection and add anti-loop/pivot safeguards for temporal runs.
+  - Impact: progression-mode NBA behavior is less prone to nulls or repeated selection traps.
+  - Migration Notes: enforce repeatability/pivot rules in runtime evaluators.
+
+- Artifact: `readiness/readiness-framework.md`
+  - Change Class: `threshold-tuning`
+  - Rationale: align high-lock vs low-lock readiness behavior using irreversibility gradient guardrails.
+  - Impact: temporal projections better preserve safety while allowing low-lock progression.
+  - Migration Notes: keep gradient checks after base thresholds.
+
+- Artifact: `README.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: include progression layer in canonical repository structure.
+  - Impact: repository boundary now explicitly includes temporal modeling artifacts.
+  - Migration Notes: none.
+
+### Added
+- Artifact: `progression/state-progression-model.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: define temporal user-state envelope and progression update cycle.
+  - Impact: introduces auditable state evolution beyond static snapshots.
+  - Migration Notes: persist progression snapshots with decision history and deltas.
+
+- Artifact: `progression/decision-impact-model.yaml`
+  - Change Class: `threshold-tuning`
+  - Rationale: encode high-irreversibility temporal impacts, compounding risks, and option closures.
+  - Impact: enables longitudinal consequence modeling for critical decisions.
+  - Migration Notes: update impacts when high-lock decision semantics change.
+
+- Artifact: `progression/optionality-model.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: formalize optionality score from reachability, reversibility, and flexibility.
+  - Impact: adds strategic-flexibility signal to decision sequencing.
+  - Migration Notes: keep score components normalized and auditable.
+
+- Artifact: `progression/decision-repeatability-policy.yaml`
+  - Change Class: `non-breaking-doc`
+  - Rationale: prevent pathological repeat loops while allowing constrained fallback paths.
+  - Impact: improves temporal convergence stability.
+  - Migration Notes: tune repeatability windows with simulation evidence only.
+
+- Artifact: `constraints/constraint-compounding-model.md`
+  - Change Class: `threshold-tuning`
+  - Rationale: add explicit compounding mechanisms (debt, time debt, cognitive overload, regulatory scaling).
+  - Impact: makes long-horizon risk dynamics explicit.
+  - Migration Notes: apply compounding after impact deltas and before classification.
+
+- Artifact: `simulation/cycle-005-long-horizon-profiles.yaml`
+  - Change Class: `non-breaking-doc`
+  - Rationale: define longitudinal stress archetypes for forward projection.
+  - Impact: improves realism of temporal behavior testing.
+  - Migration Notes: keep profile count >= 5 for cycle-depth testing.
+
+- Artifact: `simulation/cycle-005-forward-projection.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: document 5-step convergence trajectories, drift findings, and structural patches.
+  - Impact: provides first longitudinal behavior audit.
+  - Migration Notes: rerun projection after progression logic updates.
+
+- Artifact: `reports/stability-cycle-005.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: publish temporal consistency and systemic drift stability scoring.
+  - Impact: establishes dynamic-system health benchmark.
+  - Migration Notes: produce one temporal stability report per progression cycle.
+
+- Artifact: `learnings/2026-03-02-cycle-005-depth-progression-modeling.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: capture temporal modeling learnings and drift outcomes.
+  - Impact: preserves longitudinal evolution trail.
+  - Migration Notes: maintain one learning record per progression cycle.

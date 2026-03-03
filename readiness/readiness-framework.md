@@ -71,6 +71,7 @@ Evaluate in order:
 4. Check weighted average threshold.
 5. Apply decision-type extra gate.
 6. Apply irreversibility gradient guardrails when applicable.
+7. Emit readiness context for progression optionality evaluation.
 
 Output:
 - `learn-only` when any threshold is not met, evidence is stale, or confidence is insufficient.

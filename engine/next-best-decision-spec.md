@@ -39,7 +39,8 @@ All candidate evaluation and ordering must follow this exact sequence:
      - `emotional_maturity`
 
 5. **Optionality impact**
-   - prefer node that preserves future optionality when safety-equivalent.
+   - compute projected optionality using `progression/optionality-model.md`.
+   - prefer node with higher projected `optionality_score` when safety-equivalent.
    - for ties, prefer node with lower expected lock-in horizon.
 
 6. **Final deterministic tie-break**
@@ -55,6 +56,7 @@ Status outcomes per node:
 - Candidate must have all prerequisites satisfied.
 - Candidate with stale evidence beyond freshness windows cannot outrank a fresher equivalent node.
 - Candidate with missing readiness evidence defaults to `eligible-learn-only` at most.
+- Candidate already taken in recent history is ineligible unless explicitly marked repeatable by progression policy.
 
 ## Mandatory Precedence Rules
 
@@ -64,6 +66,7 @@ These rules prevent unsafe unlock behavior:
 - `approve-risk-cap-policy` must be at least `eligible-learn-only` before `decide-major-liability-commitment` can be selected.
 - no `identity-locking` node may be selected while any unresolved legal hard block exists.
 - no node with `irreversibility_score >= 0.80` may be selected when `emotional_stability < 0.72` or confidence `< 0.75`.
+- if the same `next_decision_id` is selected for 3 consecutive steps, force a constraint-relief pivot to the highest-priority unresolved deficit category (if any non-hard candidate exists).
 
 ## Output Contract
 
@@ -81,3 +84,5 @@ Engine returns:
 - Engine never upgrades a hard-blocked decision to learn-only by preference.
 - Missing evidence cannot increase eligibility status.
 - Heuristic weight stacking is disallowed; only rule-ordered deterministic selection is valid.
+- Engine must avoid repeated same-decision loops across adjacent progression steps.
+- Engine must fail-safe to a non-null `learn-only` candidate when repeatability cooldown is the only blocker.

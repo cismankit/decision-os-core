@@ -20,6 +20,7 @@ It does not execute actions, integrate platforms, or define UI behavior.
 - `graph/` - minimum universal decision graph and canonical high-impact node set.
 - `simulation/` - contradiction/deadlock simulation protocol and cycle results.
 - `engine/` - next-best decision selection logic specification.
+- `progression/` - temporal state progression and optionality modeling artifacts.
 - `execution/` - execution bridge payload and handoff expectations.
 - `governance/` - internal agent governance, authority limits, and controls.
 - `evolution/` - change governance and contradiction adjudication.
