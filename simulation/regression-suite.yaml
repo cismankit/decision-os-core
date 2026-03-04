@@ -1,0 +1,49 @@
+suite_id: ws1-regression-freeze
+version: 1
+status: frozen
+frozen_on: 2026-03-04
+owner: ws1
+denominator:
+  fixed_n: 10
+  policy: "all regression metrics must be reported as X/10"
+profiles:
+  - profile_id: fast-scaling-founder
+    source: simulation/cycle-005-long-horizon-profiles.yaml
+    category: long_horizon
+    adversarial: false
+  - profile_id: risk-seeking-serial-operator
+    source: simulation/cycle-005-long-horizon-profiles.yaml
+    category: long_horizon
+    adversarial: false
+  - profile_id: conservative-saver
+    source: simulation/cycle-005-long-horizon-profiles.yaml
+    category: long_horizon
+    adversarial: false
+  - profile_id: compliance-heavy-operator
+    source: simulation/cycle-005-long-horizon-profiles.yaml
+    category: long_horizon
+    adversarial: false
+  - profile_id: over-leveraged-growth-seeker
+    source: simulation/cycle-005-long-horizon-profiles.yaml
+    category: long_horizon
+    adversarial: false
+  - profile_id: high-income-zero-knowledge
+    source: simulation/synthetic-profiles.yaml
+    category: adversarial
+    adversarial: true
+  - profile_id: high-knowledge-zero-time
+    source: simulation/synthetic-profiles.yaml
+    category: adversarial
+    adversarial: true
+  - profile_id: high-risk-tolerance-no-capital
+    source: simulation/synthetic-profiles.yaml
+    category: adversarial
+    adversarial: true
+  - profile_id: compliance-strong-time-fragile
+    source: simulation/synthetic-profiles.yaml
+    category: adversarial
+    adversarial: true
+  - profile_id: recovery-mode-legal-risk-low
+    source: simulation/synthetic-profiles.yaml
+    category: adversarial
+    adversarial: true
