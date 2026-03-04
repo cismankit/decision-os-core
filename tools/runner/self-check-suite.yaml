@@ -1,0 +1,10 @@
+cases:
+  - profile: student-low-buffer-high-urgency
+    command: run-nba
+    expect:
+      chosen_decision: validate-core-contract-literacy
+  - profile: conservative-saver
+    command: project
+    steps: 5
+    expect:
+      gating_reason: execute-eligible
