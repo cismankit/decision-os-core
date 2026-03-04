@@ -1,0 +1,241 @@
+[
+  {
+    "decision_id": "establish-legal-safety-baseline",
+    "domain": "risk",
+    "decision_type": "legal",
+    "irreversibility_score": 0.62,
+    "prerequisites": [{ "prerequisite_id": "validate-core-contract-literacy", "satisfied": false }],
+    "constraints_required": [
+      { "category": "legal_exposure", "min_required_level": 0.75, "confidence_min": 0.8, "evidence_freshness_days_max": 7 },
+      { "category": "knowledge", "min_required_level": 0.55, "confidence_min": 0.7 }
+    ],
+    "blocked_when": [
+      { "condition_id": "legal-level-insufficient", "expression": "legal_exposure.current_level < 0.55", "reason": "legal certainty is critically low beyond viable legal-baseline progression", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "legal-level-low", "expression": "legal_exposure.current_level < 0.75", "reason": "legal baseline may progress only in simulation while legal exposure remains below execution threshold", "exit_criteria": "raise legal_exposure current level to at least 0.75" },
+      { "condition_id": "legal-confidence-low", "expression": "legal_exposure.confidence < 0.80", "reason": "confidence too low for execution-path decisions", "exit_criteria": "obtain corroborated legal evidence and reach confidence 0.80" }
+    ],
+    "unlocks": ["validate-core-contract-literacy", "decide-major-liability-commitment"]
+  },
+  {
+    "decision_id": "choose-credit-exposure-policy",
+    "domain": "credit",
+    "decision_type": "financial",
+    "irreversibility_score": 0.73,
+    "prerequisites": [
+      { "prerequisite_id": "establish-legal-safety-baseline", "satisfied": false },
+      { "prerequisite_id": "validate-core-contract-literacy", "satisfied": false },
+      { "prerequisite_id": "define-income-stability-strategy", "satisfied": false },
+      { "prerequisite_id": "build-financial-buffer-policy", "satisfied": false }
+    ],
+    "constraints_required": [
+      { "category": "knowledge", "min_required_level": 0.65, "confidence_min": 0.75, "evidence_freshness_days_max": 30 },
+      { "category": "risk", "min_required_level": 0.7, "confidence_min": 0.7, "evidence_freshness_days_max": 14 },
+      { "category": "money", "min_required_level": 0.55, "confidence_min": 0.7 }
+    ],
+    "blocked_when": [
+      { "condition_id": "risk-level-insufficient", "expression": "risk.current_level < 0.70", "reason": "risk posture below non-negotiable minimum", "block_level": "hard" },
+      { "condition_id": "legal-level-insufficient", "expression": "legal_exposure.current_level < 0.70", "reason": "unresolved legal exposure disallows leverage policy activation", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "knowledge-confidence-low", "expression": "knowledge.confidence < 0.75", "reason": "credit exposure assumptions are not adequately supported", "exit_criteria": "complete validated credit policy simulation with confidence >= 0.75" }
+    ],
+    "unlocks": ["decide-major-liability-commitment"]
+  },
+  {
+    "decision_id": "validate-core-contract-literacy",
+    "domain": "learning",
+    "decision_type": "learning",
+    "irreversibility_score": 0.2,
+    "prerequisites": [{ "prerequisite_id": "initial-context-capture", "satisfied": false }],
+    "constraints_required": [
+      { "category": "knowledge", "min_required_level": 0.45, "confidence_min": 0.7, "evidence_freshness_days_max": 45 },
+      { "category": "time", "min_required_level": 0.35, "confidence_min": 0.65 }
+    ],
+    "blocked_when": [
+      { "condition_id": "knowledge-level-critical-low", "expression": "knowledge.current_level < 0.10", "reason": "knowledge is critically low beyond viable simulation entry point", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "knowledge-level-low", "expression": "knowledge.current_level < 0.45", "reason": "low knowledge allows only simulation-mode literacy progression", "exit_criteria": "raise knowledge current level to at least 0.45" },
+      { "condition_id": "knowledge-confidence-low", "expression": "knowledge.confidence < 0.70", "reason": "confidence is insufficient for execution-level downstream unlocks", "exit_criteria": "complete validated literacy assessment at confidence >= 0.70" }
+    ],
+    "unlocks": ["establish-legal-safety-baseline", "choose-credit-exposure-policy"]
+  },
+  {
+    "decision_id": "define-income-stability-strategy",
+    "domain": "income",
+    "decision_type": "operational",
+    "irreversibility_score": 0.52,
+    "prerequisites": [{ "prerequisite_id": "design-operating-system-routines", "satisfied": false }],
+    "constraints_required": [
+      { "category": "time", "min_required_level": 0.45, "confidence_min": 0.7, "evidence_freshness_days_max": 14 },
+      { "category": "knowledge", "min_required_level": 0.55, "confidence_min": 0.7, "evidence_freshness_days_max": 45 },
+      { "category": "risk", "min_required_level": 0.6, "confidence_min": 0.7, "evidence_freshness_days_max": 14 }
+    ],
+    "blocked_when": [
+      { "condition_id": "risk-floor-fail", "expression": "risk.current_level < 0.60", "reason": "risk posture below minimum for income stability planning", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "time-confidence-low", "expression": "time.confidence < 0.70", "reason": "time availability evidence is not stable enough", "exit_criteria": "refresh time evidence and restore confidence to 0.70" }
+    ],
+    "unlocks": ["build-financial-buffer-policy", "choose-credit-exposure-policy"]
+  },
+  {
+    "decision_id": "build-financial-buffer-policy",
+    "domain": "assets",
+    "decision_type": "financial",
+    "irreversibility_score": 0.58,
+    "prerequisites": [{ "prerequisite_id": "define-income-stability-strategy", "satisfied": false }],
+    "constraints_required": [
+      { "category": "money", "min_required_level": 0.5, "confidence_min": 0.75, "evidence_freshness_days_max": 30 },
+      { "category": "time", "min_required_level": 0.4, "confidence_min": 0.7, "evidence_freshness_days_max": 14 },
+      { "category": "risk", "min_required_level": 0.65, "confidence_min": 0.7, "evidence_freshness_days_max": 14 }
+    ],
+    "blocked_when": [
+      { "condition_id": "money-floor-fail", "expression": "money.current_level < 0.50", "reason": "capital base is below minimum for robust buffer policy", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "money-confidence-low", "expression": "money.confidence < 0.75", "reason": "financial evidence confidence is insufficient", "exit_criteria": "increase verified financial confidence to >= 0.75" }
+    ],
+    "unlocks": ["authorize-capital-allocation-envelope", "choose-credit-exposure-policy"]
+  },
+  {
+    "decision_id": "approve-risk-cap-policy",
+    "domain": "risk",
+    "decision_type": "structural",
+    "irreversibility_score": 0.67,
+    "prerequisites": [
+      { "prerequisite_id": "establish-legal-safety-baseline", "satisfied": false },
+      { "prerequisite_id": "define-income-stability-strategy", "satisfied": false }
+    ],
+    "constraints_required": [
+      { "category": "risk", "min_required_level": 0.72, "confidence_min": 0.75, "evidence_freshness_days_max": 14 },
+      { "category": "legal_exposure", "min_required_level": 0.72, "confidence_min": 0.8, "evidence_freshness_days_max": 7 },
+      { "category": "knowledge", "min_required_level": 0.6, "confidence_min": 0.75, "evidence_freshness_days_max": 30 }
+    ],
+    "blocked_when": [
+      { "condition_id": "legal-floor-fail", "expression": "legal_exposure.current_level < 0.55", "reason": "legal certainty is critically low for risk-cap progression", "block_level": "hard" },
+      { "condition_id": "risk-floor-fail", "expression": "risk.current_level < 0.55", "reason": "risk signal quality is critically low for risk-cap progression", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "legal-risk-cap-low", "expression": "legal_exposure.current_level < 0.72", "reason": "risk-cap policy remains simulation-only until legal floor is met", "exit_criteria": "raise legal_exposure current level to at least 0.72" },
+      { "condition_id": "risk-risk-cap-low", "expression": "risk.current_level < 0.72", "reason": "risk-cap policy remains simulation-only until risk floor is met", "exit_criteria": "raise risk current level to at least 0.72" },
+      { "condition_id": "risk-confidence-low", "expression": "risk.confidence < 0.75", "reason": "risk evidence confidence too low for binding cap policy", "exit_criteria": "refresh risk evidence and lift confidence to >= 0.75" }
+    ],
+    "unlocks": ["authorize-capital-allocation-envelope", "decide-major-liability-commitment", "define-ownership-structure-path"]
+  },
+  {
+    "decision_id": "design-operating-system-routines",
+    "domain": "operations",
+    "decision_type": "operational",
+    "irreversibility_score": 0.4,
+    "prerequisites": [{ "prerequisite_id": "validate-core-contract-literacy", "satisfied": false }],
+    "constraints_required": [
+      { "category": "time", "min_required_level": 0.45, "confidence_min": 0.7, "evidence_freshness_days_max": 14 },
+      { "category": "cognitive_load", "min_required_level": 0.5, "confidence_min": 0.7, "evidence_freshness_days_max": 7 },
+      { "category": "emotional_maturity", "min_required_level": 0.6, "confidence_min": 0.7, "evidence_freshness_days_max": 7 }
+    ],
+    "blocked_when": [
+      { "condition_id": "cognitive-floor-fail", "expression": "cognitive_load.current_level < 0.35", "reason": "cognitive capacity is critically low for routine-design progression", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "cognitive-level-low", "expression": "cognitive_load.current_level < 0.50", "reason": "reduced cognitive headroom allows simulation-only routine design", "exit_criteria": "increase cognitive_load current level to at least 0.50" },
+      { "condition_id": "emotional-confidence-low", "expression": "emotional_maturity.confidence < 0.70", "reason": "emotional evidence confidence insufficient for durable routine commitments", "exit_criteria": "stabilize emotional evidence confidence at >= 0.70" }
+    ],
+    "unlocks": ["define-income-stability-strategy", "define-ownership-structure-path", "launch-domain-specific-execution-plan"]
+  },
+  {
+    "decision_id": "authorize-capital-allocation-envelope",
+    "domain": "assets",
+    "decision_type": "financial",
+    "irreversibility_score": 0.69,
+    "prerequisites": [
+      { "prerequisite_id": "build-financial-buffer-policy", "satisfied": false },
+      { "prerequisite_id": "approve-risk-cap-policy", "satisfied": false }
+    ],
+    "constraints_required": [
+      { "category": "money", "min_required_level": 0.62, "confidence_min": 0.78, "evidence_freshness_days_max": 30 },
+      { "category": "risk", "min_required_level": 0.72, "confidence_min": 0.75, "evidence_freshness_days_max": 14 },
+      { "category": "legal_exposure", "min_required_level": 0.7, "confidence_min": 0.8, "evidence_freshness_days_max": 7 }
+    ],
+    "blocked_when": [
+      { "condition_id": "risk-cap-not-approved", "expression": "risk.current_level < 0.72", "reason": "risk posture is insufficient for allocation authorization", "block_level": "hard" },
+      { "condition_id": "legal-allocation-floor-fail", "expression": "legal_exposure.current_level < 0.70", "reason": "legal exposure is unresolved for capital allocation", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "money-confidence-low", "expression": "money.confidence < 0.78", "reason": "capital evidence confidence is insufficient for allocation authorization", "exit_criteria": "raise financial confidence to 0.78" }
+    ],
+    "unlocks": ["decide-major-liability-commitment", "launch-domain-specific-execution-plan"]
+  },
+  {
+    "decision_id": "decide-major-liability-commitment",
+    "domain": "assets",
+    "decision_type": "legal",
+    "irreversibility_score": 0.84,
+    "prerequisites": [
+      { "prerequisite_id": "choose-credit-exposure-policy", "satisfied": false },
+      { "prerequisite_id": "authorize-capital-allocation-envelope", "satisfied": false },
+      { "prerequisite_id": "approve-risk-cap-policy", "satisfied": false }
+    ],
+    "constraints_required": [
+      { "category": "legal_exposure", "min_required_level": 0.8, "confidence_min": 0.84, "evidence_freshness_days_max": 7 },
+      { "category": "risk", "min_required_level": 0.76, "confidence_min": 0.8, "evidence_freshness_days_max": 14 },
+      { "category": "money", "min_required_level": 0.7, "confidence_min": 0.8, "evidence_freshness_days_max": 30 },
+      { "category": "emotional_maturity", "min_required_level": 0.74, "confidence_min": 0.78, "evidence_freshness_days_max": 7 }
+    ],
+    "blocked_when": [
+      { "condition_id": "legal-liability-critical", "expression": "legal_exposure.current_level < 0.62", "reason": "legal readiness is critically low for major liability commitment", "block_level": "hard" },
+      { "condition_id": "emotional-liability-critical", "expression": "emotional_maturity.current_level < 0.72", "reason": "emotional stability is critically low for high-irreversibility commitment", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "legal-liability-low", "expression": "legal_exposure.current_level < 0.80", "reason": "liability commitment remains simulation-only until legal floor is met", "exit_criteria": "increase legal_exposure current level to 0.80 with confidence >= 0.84" },
+      { "condition_id": "risk-liability-low", "expression": "risk.current_level < 0.76", "reason": "risk posture insufficient for execute-level liability commitment", "exit_criteria": "raise risk current level to 0.76 with confidence >= 0.80" }
+    ],
+    "unlocks": ["launch-domain-specific-execution-plan"]
+  },
+  {
+    "decision_id": "prioritize-competing-constraints",
+    "domain": "risk",
+    "decision_type": "structural",
+    "irreversibility_score": 0.71,
+    "prerequisites": [
+      { "prerequisite_id": "validate-core-contract-literacy", "satisfied": false },
+      { "prerequisite_id": "establish-legal-safety-baseline", "satisfied": false }
+    ],
+    "constraints_required": [
+      { "category": "risk", "min_required_level": 0.68, "confidence_min": 0.78, "evidence_freshness_days_max": 14 },
+      { "category": "legal_exposure", "min_required_level": 0.66, "confidence_min": 0.8, "evidence_freshness_days_max": 7 },
+      { "category": "knowledge", "min_required_level": 0.65, "confidence_min": 0.75, "evidence_freshness_days_max": 30 }
+    ],
+    "blocked_when": [
+      { "condition_id": "critical-legal-priority-gap", "expression": "legal_exposure.current_level < 0.55", "reason": "legal certainty is critically low for safe constraint-priority arbitration", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "risk-priority-low", "expression": "risk.current_level < 0.68", "reason": "priority arbitration remains simulation-only until risk floor is met", "exit_criteria": "raise risk current level to at least 0.68" }
+    ],
+    "unlocks": ["resolve-conflicting-objectives"]
+  },
+  {
+    "decision_id": "resolve-conflicting-objectives",
+    "domain": "operations",
+    "decision_type": "structural",
+    "irreversibility_score": 0.75,
+    "prerequisites": [
+      { "prerequisite_id": "prioritize-competing-constraints", "satisfied": false },
+      { "prerequisite_id": "design-operating-system-routines", "satisfied": false }
+    ],
+    "constraints_required": [
+      { "category": "risk", "min_required_level": 0.7, "confidence_min": 0.78, "evidence_freshness_days_max": 14 },
+      { "category": "time", "min_required_level": 0.52, "confidence_min": 0.72, "evidence_freshness_days_max": 14 },
+      { "category": "cognitive_load", "min_required_level": 0.52, "confidence_min": 0.72, "evidence_freshness_days_max": 7 }
+    ],
+    "blocked_when": [
+      { "condition_id": "critical-cognitive-fragility", "expression": "cognitive_load.current_level < 0.40", "reason": "cognitive fragility is too high for robust objective arbitration", "block_level": "hard" }
+    ],
+    "simulation_only_conditions": [
+      { "condition_id": "time-objective-low", "expression": "time.current_level < 0.52", "reason": "objective arbitration remains simulation-only while time headroom is insufficient", "exit_criteria": "raise time current level to at least 0.52" }
+    ],
+    "unlocks": ["invoke-escalation-policy"]
+  }
+]

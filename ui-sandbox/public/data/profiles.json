@@ -1,0 +1,132 @@
+[
+  {
+    "profile_id": "student-low-buffer-high-urgency",
+    "description": "early-stage learner with low capital buffer and urgency pressure",
+    "constraints": {
+      "time": { "current_level": 0.42, "required_level": 0.4, "trend": "degrading", "evidence_age_days": 5, "confidence": 0.72 },
+      "money": { "current_level": 0.33, "required_level": 0.55, "trend": "stable", "evidence_age_days": 12, "confidence": 0.76 },
+      "knowledge": { "current_level": 0.58, "required_level": 0.65, "trend": "improving", "evidence_age_days": 18, "confidence": 0.73 },
+      "risk": { "current_level": 0.61, "required_level": 0.7, "trend": "degrading", "evidence_age_days": 8, "confidence": 0.7 },
+      "legal_exposure": { "current_level": 0.67, "required_level": 0.75, "trend": "stable", "evidence_age_days": 10, "confidence": 0.74 },
+      "cognitive_load": { "current_level": 0.47, "required_level": 0.5, "trend": "degrading", "evidence_age_days": 4, "confidence": 0.8 },
+      "emotional_maturity": { "current_level": 0.66, "required_level": 0.72, "trend": "stable", "evidence_age_days": 3, "confidence": 0.77 }
+    }
+  },
+  {
+    "profile_id": "employee-stable-income-medium-readiness",
+    "description": "salaried operator with moderate readiness and low legal clarity variance",
+    "constraints": {
+      "time": { "current_level": 0.57, "required_level": 0.4, "trend": "stable", "evidence_age_days": 6, "confidence": 0.81 },
+      "money": { "current_level": 0.62, "required_level": 0.55, "trend": "improving", "evidence_age_days": 10, "confidence": 0.83 },
+      "knowledge": { "current_level": 0.64, "required_level": 0.65, "trend": "improving", "evidence_age_days": 16, "confidence": 0.74 },
+      "risk": { "current_level": 0.72, "required_level": 0.7, "trend": "stable", "evidence_age_days": 9, "confidence": 0.79 },
+      "legal_exposure": { "current_level": 0.78, "required_level": 0.75, "trend": "stable", "evidence_age_days": 5, "confidence": 0.86 },
+      "cognitive_load": { "current_level": 0.58, "required_level": 0.5, "trend": "stable", "evidence_age_days": 2, "confidence": 0.82 },
+      "emotional_maturity": { "current_level": 0.74, "required_level": 0.72, "trend": "improving", "evidence_age_days": 3, "confidence": 0.79 }
+    }
+  },
+  {
+    "profile_id": "founder-high-variance-high-load",
+    "description": "founder with high opportunity volume and unstable load/risk dynamics",
+    "constraints": {
+      "time": { "current_level": 0.36, "required_level": 0.4, "trend": "degrading", "evidence_age_days": 4, "confidence": 0.8 },
+      "money": { "current_level": 0.51, "required_level": 0.55, "trend": "degrading", "evidence_age_days": 7, "confidence": 0.78 },
+      "knowledge": { "current_level": 0.7, "required_level": 0.65, "trend": "improving", "evidence_age_days": 21, "confidence": 0.71 },
+      "risk": { "current_level": 0.63, "required_level": 0.7, "trend": "degrading", "evidence_age_days": 6, "confidence": 0.74 },
+      "legal_exposure": { "current_level": 0.74, "required_level": 0.75, "trend": "stable", "evidence_age_days": 8, "confidence": 0.82 },
+      "cognitive_load": { "current_level": 0.41, "required_level": 0.5, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.84 },
+      "emotional_maturity": { "current_level": 0.69, "required_level": 0.72, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.76 }
+    }
+  },
+  {
+    "profile_id": "low-risk-low-income",
+    "description": "conservative low-risk individual with constrained income and limited buffer",
+    "constraints": {
+      "time": { "current_level": 0.56, "required_level": 0.4, "trend": "stable", "evidence_age_days": 6, "confidence": 0.79 },
+      "money": { "current_level": 0.28, "required_level": 0.55, "trend": "degrading", "evidence_age_days": 9, "confidence": 0.81 },
+      "knowledge": { "current_level": 0.61, "required_level": 0.65, "trend": "improving", "evidence_age_days": 14, "confidence": 0.74 },
+      "risk": { "current_level": 0.78, "required_level": 0.7, "trend": "stable", "evidence_age_days": 5, "confidence": 0.82 },
+      "legal_exposure": { "current_level": 0.77, "required_level": 0.75, "trend": "stable", "evidence_age_days": 4, "confidence": 0.86 },
+      "cognitive_load": { "current_level": 0.59, "required_level": 0.5, "trend": "stable", "evidence_age_days": 3, "confidence": 0.8 },
+      "emotional_maturity": { "current_level": 0.73, "required_level": 0.72, "trend": "stable", "evidence_age_days": 3, "confidence": 0.78 }
+    }
+  },
+  {
+    "profile_id": "high-income-zero-knowledge",
+    "description": "strong income and capital with near-zero validated knowledge",
+    "constraints": {
+      "time": { "current_level": 0.64, "required_level": 0.4, "trend": "stable", "evidence_age_days": 4, "confidence": 0.82 },
+      "money": { "current_level": 0.83, "required_level": 0.55, "trend": "improving", "evidence_age_days": 6, "confidence": 0.88 },
+      "knowledge": { "current_level": 0.12, "required_level": 0.65, "trend": "improving", "evidence_age_days": 2, "confidence": 0.69 },
+      "risk": { "current_level": 0.68, "required_level": 0.7, "trend": "degrading", "evidence_age_days": 5, "confidence": 0.75 },
+      "legal_exposure": { "current_level": 0.65, "required_level": 0.75, "trend": "stable", "evidence_age_days": 8, "confidence": 0.77 },
+      "cognitive_load": { "current_level": 0.62, "required_level": 0.5, "trend": "stable", "evidence_age_days": 2, "confidence": 0.84 },
+      "emotional_maturity": { "current_level": 0.71, "required_level": 0.72, "trend": "stable", "evidence_age_days": 2, "confidence": 0.76 }
+    }
+  },
+  {
+    "profile_id": "high-knowledge-zero-time",
+    "description": "well-informed user with severe time scarcity",
+    "constraints": {
+      "time": { "current_level": 0.09, "required_level": 0.4, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.86 },
+      "money": { "current_level": 0.58, "required_level": 0.55, "trend": "stable", "evidence_age_days": 7, "confidence": 0.8 },
+      "knowledge": { "current_level": 0.86, "required_level": 0.65, "trend": "improving", "evidence_age_days": 8, "confidence": 0.84 },
+      "risk": { "current_level": 0.7, "required_level": 0.7, "trend": "stable", "evidence_age_days": 4, "confidence": 0.79 },
+      "legal_exposure": { "current_level": 0.76, "required_level": 0.75, "trend": "stable", "evidence_age_days": 5, "confidence": 0.83 },
+      "cognitive_load": { "current_level": 0.44, "required_level": 0.5, "trend": "degrading", "evidence_age_days": 1, "confidence": 0.82 },
+      "emotional_maturity": { "current_level": 0.74, "required_level": 0.72, "trend": "stable", "evidence_age_days": 2, "confidence": 0.8 }
+    }
+  },
+  {
+    "profile_id": "high-risk-tolerance-no-capital",
+    "description": "aggressive risk appetite with no capital base",
+    "constraints": {
+      "time": { "current_level": 0.61, "required_level": 0.4, "trend": "stable", "evidence_age_days": 6, "confidence": 0.78 },
+      "money": { "current_level": 0.08, "required_level": 0.55, "trend": "stable", "evidence_age_days": 5, "confidence": 0.83 },
+      "knowledge": { "current_level": 0.63, "required_level": 0.65, "trend": "improving", "evidence_age_days": 12, "confidence": 0.73 },
+      "risk": { "current_level": 0.84, "required_level": 0.7, "trend": "improving", "evidence_age_days": 4, "confidence": 0.81 },
+      "legal_exposure": { "current_level": 0.72, "required_level": 0.75, "trend": "stable", "evidence_age_days": 9, "confidence": 0.79 },
+      "cognitive_load": { "current_level": 0.55, "required_level": 0.5, "trend": "stable", "evidence_age_days": 3, "confidence": 0.81 },
+      "emotional_maturity": { "current_level": 0.72, "required_level": 0.72, "trend": "stable", "evidence_age_days": 2, "confidence": 0.77 }
+    }
+  },
+  {
+    "profile_id": "mid-career-high-liabilities",
+    "description": "mid-career operator carrying high fixed obligations and medium readiness",
+    "constraints": {
+      "time": { "current_level": 0.49, "required_level": 0.4, "trend": "degrading", "evidence_age_days": 5, "confidence": 0.79 },
+      "money": { "current_level": 0.39, "required_level": 0.55, "trend": "degrading", "evidence_age_days": 7, "confidence": 0.82 },
+      "knowledge": { "current_level": 0.68, "required_level": 0.65, "trend": "stable", "evidence_age_days": 18, "confidence": 0.75 },
+      "risk": { "current_level": 0.58, "required_level": 0.7, "trend": "degrading", "evidence_age_days": 6, "confidence": 0.78 },
+      "legal_exposure": { "current_level": 0.69, "required_level": 0.75, "trend": "degrading", "evidence_age_days": 6, "confidence": 0.8 },
+      "cognitive_load": { "current_level": 0.43, "required_level": 0.5, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.84 },
+      "emotional_maturity": { "current_level": 0.67, "required_level": 0.72, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.78 }
+    }
+  },
+  {
+    "profile_id": "compliance-strong-time-fragile",
+    "description": "compliant and financially stable state with critical time scarcity",
+    "constraints": {
+      "time": { "current_level": 0.14, "required_level": 0.4, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.86 },
+      "money": { "current_level": 0.74, "required_level": 0.55, "trend": "stable", "evidence_age_days": 7, "confidence": 0.85 },
+      "knowledge": { "current_level": 0.69, "required_level": 0.65, "trend": "stable", "evidence_age_days": 10, "confidence": 0.78 },
+      "risk": { "current_level": 0.73, "required_level": 0.7, "trend": "stable", "evidence_age_days": 5, "confidence": 0.8 },
+      "legal_exposure": { "current_level": 0.8, "required_level": 0.75, "trend": "stable", "evidence_age_days": 3, "confidence": 0.88 },
+      "cognitive_load": { "current_level": 0.53, "required_level": 0.5, "trend": "stable", "evidence_age_days": 2, "confidence": 0.83 },
+      "emotional_maturity": { "current_level": 0.73, "required_level": 0.72, "trend": "stable", "evidence_age_days": 2, "confidence": 0.8 }
+    }
+  },
+  {
+    "profile_id": "recovery-mode-legal-risk-low",
+    "description": "recovering state with depleted legal/risk confidence and constrained optionality",
+    "constraints": {
+      "time": { "current_level": 0.46, "required_level": 0.4, "trend": "improving", "evidence_age_days": 8, "confidence": 0.73 },
+      "money": { "current_level": 0.48, "required_level": 0.55, "trend": "improving", "evidence_age_days": 11, "confidence": 0.75 },
+      "knowledge": { "current_level": 0.57, "required_level": 0.65, "trend": "improving", "evidence_age_days": 16, "confidence": 0.72 },
+      "risk": { "current_level": 0.42, "required_level": 0.7, "trend": "improving", "evidence_age_days": 6, "confidence": 0.7 },
+      "legal_exposure": { "current_level": 0.51, "required_level": 0.75, "trend": "improving", "evidence_age_days": 7, "confidence": 0.71 },
+      "cognitive_load": { "current_level": 0.51, "required_level": 0.5, "trend": "stable", "evidence_age_days": 3, "confidence": 0.8 },
+      "emotional_maturity": { "current_level": 0.64, "required_level": 0.72, "trend": "improving", "evidence_age_days": 3, "confidence": 0.76 }
+    }
+  }
+]
