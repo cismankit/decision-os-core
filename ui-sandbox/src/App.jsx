@@ -1,7 +1,9 @@
 import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
 import { useMemo, useState } from 'react'
-import { runEvaluator, runProjection } from './lib/evaluator'
+import { evaluateProfile } from './engine-adapter/evaluateProfile'
+import { projectProfile } from './engine-adapter/runProjection'
 import { useSandboxData } from './lib/dataLoader'
+import { DashboardPage } from './pages/DashboardPage'
 import { DecisionPage } from './pages/DecisionPage'
 import { GraphPage } from './pages/GraphPage'
 import { ProfilesPage } from './pages/ProfilesPage'
@@ -9,6 +11,7 @@ import { ProjectionPage } from './pages/ProjectionPage'
 import { ScenariosPage } from './pages/ScenariosPage'
 
 const ROUTES = [
+  { path: '/dashboard', label: 'Dashboard' },
   { path: '/profiles', label: 'Profiles' },
   { path: '/decision', label: 'Decision' },
   { path: '/projection', label: 'Projection' },
@@ -27,15 +30,19 @@ function App() {
     () => profiles.find((profile) => profile.profile_id === selectedProfileId) ?? null,
     [profiles, selectedProfileId],
   )
+  const nodesById = useMemo(
+    () => Object.fromEntries(nodes.map((node) => [node.decision_id, node])),
+    [nodes],
+  )
 
   const runNow = () => {
     if (!selectedProfile) return
-    setLastRun(runEvaluator(selectedProfile, nodes))
+    setLastRun(evaluateProfile(selectedProfile, nodes))
   }
 
   const runProjectionNow = () => {
     if (!selectedProfile) return
-    setProjectionRun(runProjection(selectedProfile, nodes, projectionSteps))
+    setProjectionRun(projectProfile(selectedProfile, nodes, projectionSteps))
   }
 
   if (loading) {
@@ -77,6 +84,7 @@ function App() {
 
       <main>
         <Routes>
+          <Route path="/dashboard" element={<DashboardPage profile={selectedProfile} run={lastRun} />} />
           <Route
             path="/profiles"
             element={
@@ -89,7 +97,7 @@ function App() {
           />
           <Route
             path="/decision"
-            element={<DecisionPage run={lastRun} selectedProfile={selectedProfile} />}
+            element={<DecisionPage run={lastRun} selectedProfile={selectedProfile} nodesById={nodesById} />}
           />
           <Route
             path="/projection"
@@ -100,6 +108,7 @@ function App() {
                 run={projectionRun}
                 selectedProfile={selectedProfile}
                 onRunProjection={runProjectionNow}
+                nodesById={nodesById}
               />
             }
           />
@@ -107,8 +116,8 @@ function App() {
             path="/scenarios"
             element={<ScenariosPage scenarios={scenarioProfiles} nodes={nodes} />}
           />
-          <Route path="/graph" element={<GraphPage nodes={nodes} />} />
-          <Route path="*" element={<Navigate to="/profiles" replace />} />
+          <Route path="/graph" element={<GraphPage nodes={nodes} nodeStates={lastRun?.node_states || []} />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>
     </div>

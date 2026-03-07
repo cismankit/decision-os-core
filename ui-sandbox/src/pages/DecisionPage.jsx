@@ -1,4 +1,6 @@
-export function DecisionPage({ run, selectedProfile }) {
+import { DecisionCard } from '../components/DecisionCard'
+
+export function DecisionPage({ run, selectedProfile, nodesById }) {
   if (!selectedProfile) {
     return <section>Select a profile on the Profiles page, then click Run.</section>
   }
@@ -10,23 +12,7 @@ export function DecisionPage({ run, selectedProfile }) {
   return (
     <section>
       <h2>Next Best Decision</h2>
-      <div className="card">
-        <p>
-          <strong>Profile:</strong> {run.profile_id}
-        </p>
-        <p>
-          <strong>next_decision_id:</strong> {run.next_decision_id}
-        </p>
-        <p>
-          <strong>status:</strong> {run.status}
-        </p>
-        <p>
-          <strong>rationale:</strong> {run.rationale}
-        </p>
-        <p>
-          <strong>optionality_delta:</strong> {run.optionality_delta}
-        </p>
-      </div>
+      <DecisionCard run={run} nodesById={nodesById} />
 
       <div className="card-grid">
         <article className="card">

@@ -896,3 +896,144 @@ Use this template for every update:
   - Rationale: record implementation frictions and invariant outcomes for scenario layer rollout.
   - Impact: preserves recursive learning continuity.
   - Migration Notes: maintain one learning record per cycle.
+
+## [0.12.1] - 2026-03-07
+### Changed
+- Artifact: `README.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: upgrade to product-grade documentation with architecture, workflows, certification model, and screenshot references.
+  - Impact: improves operator onboarding and enterprise review readiness.
+  - Migration Notes: keep screenshot paths and usage commands current.
+
+- Artifact: `ui-sandbox/src/App.jsx`
+  - Change Class: `threshold-tuning`
+  - Rationale: add dashboard-first product navigation and enforce adapter-based evaluation/projection calls.
+  - Impact: UI orchestration now aligns with product sections while preserving deterministic behavior.
+  - Migration Notes: route additions should continue to consume adapter layer only.
+
+- Artifact: `ui-sandbox/src/lib/evaluator.js`
+  - Change Class: `threshold-tuning`
+  - Rationale: expose richer evaluation state for product visualizations (node states, candidate stats, prerequisites).
+  - Impact: enables graph/dashboard visualization without introducing independent decision rules.
+  - Migration Notes: preserve parity tests after evaluator updates.
+
+- Artifact: `ui-sandbox/src/lib/dataLoader.js`
+  - Change Class: `threshold-tuning`
+  - Rationale: load scenario datasets for scenario explorer and dashboard usage.
+  - Impact: product UI can switch between regression and realistic scenario layers.
+  - Migration Notes: keep local JSON sources synchronized with canonical YAML.
+
+- Artifact: `ui-sandbox/src/pages/DecisionPage.jsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: route decision rendering through reusable decision card surface.
+  - Impact: improves consistency of decision panel presentation.
+  - Migration Notes: keep card props aligned with adapter output contract.
+
+- Artifact: `ui-sandbox/src/pages/ProjectionPage.jsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: route projection rendering through reusable timeline component.
+  - Impact: improves readability of projection state transitions.
+  - Migration Notes: maintain 1-5 step projection cap.
+
+- Artifact: `ui-sandbox/src/pages/GraphPage.jsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: replace static graph rendering with state-aware visualization component.
+  - Impact: blocked/reachable/irreversible nodes are visible in graph context.
+  - Migration Notes: keep graph read-only and data-driven.
+
+- Artifact: `ui-sandbox/src/pages/ScenariosPage.jsx`
+  - Change Class: `threshold-tuning`
+  - Rationale: add parameter modification controls and projection timeline for scenario simulation.
+  - Impact: scenario explorer now supports dynamic what-if analysis.
+  - Migration Notes: continue using adapter wrappers for evaluation/projection.
+
+- Artifact: `ui-sandbox/src/index.css`
+  - Change Class: `non-breaking-doc`
+  - Rationale: apply product-level visual system for meters, timelines, graph state colors, and dashboard layout.
+  - Impact: diagnostic UI is now presentation-ready for stakeholder demos.
+  - Migration Notes: preserve semantic classes used by reusable components.
+
+### Added
+- Artifact: `ui-sandbox/src/components/DecisionCard.tsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: reusable decision panel card for NBA details and deltas.
+  - Impact: centralizes decision summary rendering.
+  - Migration Notes: keep fields aligned with adapter output.
+
+- Artifact: `ui-sandbox/src/components/ConstraintMeter.tsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: reusable constraint visualization meter.
+  - Impact: improves at-a-glance readiness inspection.
+  - Migration Notes: ensure required/current scaling remains normalized.
+
+- Artifact: `ui-sandbox/src/components/OptionalityGauge.tsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: visualize optionality change in dashboard and panels.
+  - Impact: optionality signal is now human-readable.
+  - Migration Notes: keep value bounds synchronized with runner output ranges.
+
+- Artifact: `ui-sandbox/src/components/ProjectionTimeline.tsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: reusable 5-step timeline with irreversible markers.
+  - Impact: projection transitions are easier to interpret.
+  - Migration Notes: keep irreversible threshold at `>= 0.80`.
+
+- Artifact: `ui-sandbox/src/components/DecisionGraphView.tsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: state-aware node-edge graph visualization component.
+  - Impact: graph conveys reachable/blocked/irreversible states.
+  - Migration Notes: consume node state from adapter outputs only.
+
+- Artifact: `ui-sandbox/src/engine-adapter/evaluateProfile.ts`
+  - Change Class: `non-breaking-doc`
+  - Rationale: create explicit adapter boundary for profile evaluation.
+  - Impact: page-level UI no longer calls evaluator implementation directly.
+  - Migration Notes: keep adapter thin and deterministic.
+
+- Artifact: `ui-sandbox/src/engine-adapter/runProjection.ts`
+  - Change Class: `non-breaking-doc`
+  - Rationale: create explicit adapter boundary for projections.
+  - Impact: projection invocation is standardized across pages.
+  - Migration Notes: preserve deterministic step handling.
+
+- Artifact: `ui-sandbox/src/engine-adapter/loadScenario.ts`
+  - Change Class: `non-breaking-doc`
+  - Rationale: centralize scenario loading and parameter override logic.
+  - Impact: scenario explorer modifications stay isolated from page components.
+  - Migration Notes: keep overrides bounded to `[0,1]`.
+
+- Artifact: `ui-sandbox/src/pages/DashboardPage.tsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: add dashboard section with user state, readiness, risk, and optionality.
+  - Impact: product layer now provides executive summary view.
+  - Migration Notes: display only derived values from loaded state and adapter outputs.
+
+- Artifact: `docs/architecture-diagram.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: provide architecture and decision-flow diagrams for technical stakeholders.
+  - Impact: system topology is easier to audit and communicate.
+  - Migration Notes: update diagrams when architecture boundaries change.
+
+- Artifact: `docs/decision-engine-explainer.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: provide concise explainer of gating, NBA, and projection behavior.
+  - Impact: improves cross-functional understanding of engine behavior.
+  - Migration Notes: keep terminology aligned with canonical artifacts.
+
+- Artifact: `docs/screenshots/*.png`
+  - Change Class: `non-breaking-doc`
+  - Rationale: capture product UI views for README documentation.
+  - Impact: provides visual proof of interface capabilities.
+  - Migration Notes: refresh screenshots after major UI updates.
+
+- Artifact: `reports/stability-cycle-012.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: record post-productization validation and invariant status.
+  - Impact: confirms UI/product layer did not destabilize certified gates.
+  - Migration Notes: preserve gate table format for comparability.
+
+- Artifact: `learnings/2026-03-07-cycle-012-productization.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: log productization-specific failures, fixes, and invariant outcomes.
+  - Impact: extends learning trail beyond scenario-layer work.
+  - Migration Notes: keep one learning record per major workstream within cycle.

@@ -108,7 +108,9 @@ const evaluateNode = (profile, node, priorDecisions) => {
 
   return {
     decision_id: String(node.decision_id || 'unknown-decision'),
+    decision_type: String(node.decision_type || 'unknown'),
     irreversibility_score: irreversibility,
+    prerequisites: node.prerequisites || [],
     gating_reason: gatingReason,
     gating_details: gatingDetails,
     constraint_deltas: deltas,
@@ -175,6 +177,25 @@ const chooseDecision = (profile, nodes, priorDecisions = []) => {
   return { selected, ranked }
 }
 
+export const evaluateAllNodes = (profile, nodes, priorDecisions = []) => {
+  const evaluated = nodes.map((node) => evaluateNode(profile, node, priorDecisions))
+  return [...evaluated].sort((a, b) => {
+    const aKey = [
+      GATE_RANK[a.gating_reason] ?? 9,
+      round3(scoreDeficit(a)),
+      Number(a.irreversibility_score || 0),
+      a.decision_id,
+    ]
+    const bKey = [
+      GATE_RANK[b.gating_reason] ?? 9,
+      round3(scoreDeficit(b)),
+      Number(b.irreversibility_score || 0),
+      b.decision_id,
+    ]
+    return JSON.stringify(aKey).localeCompare(JSON.stringify(bKey))
+  })
+}
+
 const applyProjectionUpdate = (profile, chosen) => {
   const updated = JSON.parse(JSON.stringify(profile))
   const constraints = updated.constraints || {}
@@ -228,6 +249,9 @@ export const runEvaluator = (profile, nodes, priorDecisions = []) => {
   }
 
   const { selected, ranked } = decision
+  const blockedByHard = ranked.filter((node) => node.gating_reason === 'blocked').length
+  const executeEligible = ranked.filter((node) => node.gating_reason === 'execute-eligible').length
+  const learnOnly = ranked.filter((node) => node.gating_reason === 'learn-only').length
   return {
     profile_id: profile.profile_id,
     next_decision_id: selected.decision_id,
@@ -236,9 +260,22 @@ export const runEvaluator = (profile, nodes, priorDecisions = []) => {
     blocking_reasons: selected.gating_details,
     evidence_gaps: [],
     rule_refs: ['runner-parity:v1'],
+    prerequisites: selected.prerequisites || [],
+    decision_type: selected.decision_type,
     constraint_deltas: selected.constraint_deltas,
     optionality_delta: selected.optionality_delta,
     drift_flags: selected.drift_flags,
+    stats: {
+      execute_eligible_count: executeEligible,
+      learn_only_count: learnOnly,
+      hard_block_count: blockedByHard,
+      total_candidates: ranked.length,
+    },
+    node_states: ranked.map((node) => ({
+      decision_id: node.decision_id,
+      gating_reason: node.gating_reason,
+      irreversibility_score: node.irreversibility_score,
+    })),
     blocked_candidates: ranked
       .filter((node) => node.gating_reason !== 'execute-eligible')
       .slice(0, 6)

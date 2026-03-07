@@ -1,4 +1,6 @@
-export function ProjectionPage({ steps, setSteps, run, selectedProfile, onRunProjection }) {
+import { ProjectionTimeline } from '../components/ProjectionTimeline'
+
+export function ProjectionPage({ steps, setSteps, run, selectedProfile, onRunProjection, nodesById }) {
   if (!selectedProfile) {
     return <section>Select a profile first.</section>
   }
@@ -19,32 +21,7 @@ export function ProjectionPage({ steps, setSteps, run, selectedProfile, onRunPro
         <button onClick={onRunProjection}>Run Projection</button>
       </div>
 
-      {run.length === 0 ? (
-        <p>Run projection to view deterministic step outputs.</p>
-      ) : (
-        <div className="card-grid">
-          {run.map((stepResult) => (
-            <article key={stepResult.step} className="card">
-              <h3>Step {stepResult.step}</h3>
-              <p>
-                <strong>next_decision_id:</strong> {stepResult.next_decision_id}
-              </p>
-              <p>
-                <strong>status:</strong> {stepResult.status}
-              </p>
-              <p>
-                <strong>rationale:</strong> {stepResult.rationale}
-              </p>
-              <p>
-                <strong>blocked:</strong> {stepResult.blocking_reasons[0]}
-              </p>
-              <p>
-                <strong>optionality_delta:</strong> {stepResult.optionality_delta}
-              </p>
-            </article>
-          ))}
-        </div>
-      )}
+      <ProjectionTimeline run={run} nodesById={nodesById} />
     </section>
   )
 }

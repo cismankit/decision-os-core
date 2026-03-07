@@ -1,20 +1,36 @@
 import { useMemo, useState } from 'react'
-import { runEvaluator, runProjection } from '../lib/evaluator'
+import { evaluateProfile } from '../engine-adapter/evaluateProfile'
+import { projectProfile } from '../engine-adapter/runProjection'
+import { loadScenarioById, withScenarioOverrides } from '../engine-adapter/loadScenario'
+import { ProjectionTimeline } from '../components/ProjectionTimeline'
 
 export function ScenariosPage({ scenarios, nodes }) {
   const [selectedScenarioId, setSelectedScenarioId] = useState('')
+  const [overrides, setOverrides] = useState({})
   const [decisionRun, setDecisionRun] = useState(null)
   const [projectionRun, setProjectionRun] = useState([])
+  const nodesById = useMemo(
+    () => Object.fromEntries(nodes.map((node) => [node.decision_id, node])),
+    [nodes],
+  )
 
   const selectedScenario = useMemo(
-    () => scenarios.find((scenario) => scenario.profile_id === selectedScenarioId) ?? null,
+    () => loadScenarioById(scenarios, selectedScenarioId),
     [scenarios, selectedScenarioId],
+  )
+  const workingScenario = useMemo(
+    () => (selectedScenario ? withScenarioOverrides(selectedScenario, overrides) : null),
+    [selectedScenario, overrides],
   )
 
   const runScenario = () => {
-    if (!selectedScenario) return
-    setDecisionRun(runEvaluator(selectedScenario, nodes))
-    setProjectionRun(runProjection(selectedScenario, nodes, 5))
+    if (!workingScenario) return
+    setDecisionRun(evaluateProfile(workingScenario, nodes))
+    setProjectionRun(projectProfile(workingScenario, nodes, 5))
+  }
+
+  const updateConstraint = (category, value) => {
+    setOverrides((prev) => ({ ...prev, [category]: Number(value) }))
   }
 
   return (
@@ -38,37 +54,54 @@ export function ScenariosPage({ scenarios, nodes }) {
         </button>
       </div>
 
-      {selectedScenario && (
+      {workingScenario && (
         <article className="card">
           <h3>Current State</h3>
           <p>
-            <strong>Scenario:</strong> {selectedScenario.scenario_label}
+            <strong>Scenario:</strong> {workingScenario.scenario_label}
           </p>
           <ul>
             <li>
-              <strong>income:</strong> {selectedScenario.income.monthly_usd} USD ({selectedScenario.income.stability})
+              <strong>income:</strong> {workingScenario.income.monthly_usd} USD ({workingScenario.income.stability})
             </li>
             <li>
               <strong>credit readiness:</strong>{' '}
-              {selectedScenario.credit_readiness.has_credit_history ? 'history present' : 'no history'} (
-              {selectedScenario.credit_readiness.score_band})
+              {workingScenario.credit_readiness.has_credit_history ? 'history present' : 'no history'} (
+              {workingScenario.credit_readiness.score_band})
             </li>
             <li>
-              <strong>risk exposure:</strong> {selectedScenario.risk_exposure.level}
+              <strong>risk exposure:</strong> {workingScenario.risk_exposure.level}
             </li>
             <li>
-              <strong>legal exposure:</strong> {selectedScenario.legal_exposure.level}
+              <strong>legal exposure:</strong> {workingScenario.legal_exposure.level}
             </li>
             <li>
-              <strong>operational bandwidth:</strong> {selectedScenario.operational_bandwidth.hours_per_week} h/week
+              <strong>operational bandwidth:</strong> {workingScenario.operational_bandwidth.hours_per_week} h/week
             </li>
             <li>
-              <strong>capital availability:</strong> {selectedScenario.capital_availability.liquid_usd} USD
+              <strong>capital availability:</strong> {workingScenario.capital_availability.liquid_usd} USD
             </li>
             <li>
-              <strong>knowledge gaps:</strong> {selectedScenario.knowledge_gaps.join(', ')}
+              <strong>knowledge gaps:</strong> {workingScenario.knowledge_gaps.join(', ')}
             </li>
           </ul>
+          <h4>Modify Parameters</h4>
+          <div className="meter-grid">
+            {Object.entries(workingScenario.constraints).map(([name, values]) => (
+              <label key={name} className="card">
+                <strong>{name}</strong>
+                <input
+                  type="range"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={values.current_level}
+                  onChange={(event) => updateConstraint(name, event.target.value)}
+                />
+                <span>current: {Number(values.current_level).toFixed(2)}</span>
+              </label>
+            ))}
+          </div>
         </article>
       )}
 
@@ -90,14 +123,7 @@ export function ScenariosPage({ scenarios, nodes }) {
       {projectionRun.length > 0 && (
         <article className="card">
           <h3>Projection Timeline (5-step)</h3>
-          <ul>
-            {projectionRun.map((step) => (
-              <li key={step.step}>
-                <strong>step {step.step}:</strong> {step.next_decision_id} ({step.status}) | optionality{' '}
-                {step.optionality_delta}
-              </li>
-            ))}
-          </ul>
+          <ProjectionTimeline run={projectionRun} nodesById={nodesById} />
         </article>
       )}
     </section>
