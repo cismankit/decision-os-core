@@ -1,0 +1,162 @@
+[
+  {
+    "profile_id": "student-no-credit",
+    "scenario_label": "12th grade student (no income, no credit)",
+    "income": { "monthly_usd": 0, "stability": "low" },
+    "credit_readiness": { "has_credit_history": false, "score_band": "none" },
+    "risk_exposure": { "level": "medium" },
+    "legal_exposure": { "level": "low" },
+    "operational_bandwidth": { "hours_per_week": 15, "reliability": "low" },
+    "capital_availability": { "liquid_usd": 100, "runway_months": 0 },
+    "knowledge_gaps": ["contract-literacy", "credit-policy-basics"],
+    "constraints": {
+      "time": { "current_level": 0.36, "required_level": 0.4, "trend": "degrading", "evidence_age_days": 3, "confidence": 0.74 },
+      "money": { "current_level": 0.12, "required_level": 0.55, "trend": "degrading", "evidence_age_days": 4, "confidence": 0.79 },
+      "knowledge": { "current_level": 0.22, "required_level": 0.65, "trend": "improving", "evidence_age_days": 10, "confidence": 0.68 },
+      "risk": { "current_level": 0.5, "required_level": 0.7, "trend": "degrading", "evidence_age_days": 5, "confidence": 0.72 },
+      "legal_exposure": { "current_level": 0.52, "required_level": 0.75, "trend": "stable", "evidence_age_days": 7, "confidence": 0.74 },
+      "cognitive_load": { "current_level": 0.46, "required_level": 0.5, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.82 },
+      "emotional_maturity": { "current_level": 0.63, "required_level": 0.72, "trend": "stable", "evidence_age_days": 2, "confidence": 0.77 }
+    }
+  },
+  {
+    "profile_id": "student-1000-savings",
+    "scenario_label": "student with $1000 savings",
+    "income": { "monthly_usd": 150, "stability": "low" },
+    "credit_readiness": { "has_credit_history": false, "score_band": "none" },
+    "risk_exposure": { "level": "medium" },
+    "legal_exposure": { "level": "low" },
+    "operational_bandwidth": { "hours_per_week": 22, "reliability": "medium" },
+    "capital_availability": { "liquid_usd": 1000, "runway_months": 5 },
+    "knowledge_gaps": ["debt-terms", "legal-baseline"],
+    "constraints": {
+      "time": { "current_level": 0.44, "required_level": 0.4, "trend": "stable", "evidence_age_days": 4, "confidence": 0.76 },
+      "money": { "current_level": 0.3, "required_level": 0.55, "trend": "stable", "evidence_age_days": 5, "confidence": 0.82 },
+      "knowledge": { "current_level": 0.34, "required_level": 0.65, "trend": "improving", "evidence_age_days": 9, "confidence": 0.7 },
+      "risk": { "current_level": 0.56, "required_level": 0.7, "trend": "stable", "evidence_age_days": 5, "confidence": 0.74 },
+      "legal_exposure": { "current_level": 0.58, "required_level": 0.75, "trend": "stable", "evidence_age_days": 6, "confidence": 0.76 },
+      "cognitive_load": { "current_level": 0.52, "required_level": 0.5, "trend": "stable", "evidence_age_days": 2, "confidence": 0.8 },
+      "emotional_maturity": { "current_level": 0.66, "required_level": 0.72, "trend": "improving", "evidence_age_days": 2, "confidence": 0.79 }
+    }
+  },
+  {
+    "profile_id": "early-freelancer",
+    "scenario_label": "early freelancer",
+    "income": { "monthly_usd": 1800, "stability": "medium-low" },
+    "credit_readiness": { "has_credit_history": "thin", "score_band": "subprime" },
+    "risk_exposure": { "level": "high" },
+    "legal_exposure": { "level": "medium" },
+    "operational_bandwidth": { "hours_per_week": 38, "reliability": "medium" },
+    "capital_availability": { "liquid_usd": 1200, "runway_months": 1 },
+    "knowledge_gaps": ["contract-negotiation", "risk-cap-policy"],
+    "constraints": {
+      "time": { "current_level": 0.48, "required_level": 0.4, "trend": "stable", "evidence_age_days": 4, "confidence": 0.78 },
+      "money": { "current_level": 0.4, "required_level": 0.55, "trend": "degrading", "evidence_age_days": 6, "confidence": 0.8 },
+      "knowledge": { "current_level": 0.52, "required_level": 0.65, "trend": "improving", "evidence_age_days": 10, "confidence": 0.73 },
+      "risk": { "current_level": 0.55, "required_level": 0.7, "trend": "degrading", "evidence_age_days": 5, "confidence": 0.76 },
+      "legal_exposure": { "current_level": 0.62, "required_level": 0.75, "trend": "degrading", "evidence_age_days": 6, "confidence": 0.78 },
+      "cognitive_load": { "current_level": 0.45, "required_level": 0.5, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.84 },
+      "emotional_maturity": { "current_level": 0.67, "required_level": 0.72, "trend": "stable", "evidence_age_days": 2, "confidence": 0.78 }
+    }
+  },
+  {
+    "profile_id": "immigrant-high-income-no-credit",
+    "scenario_label": "immigrant high-income no credit history",
+    "income": { "monthly_usd": 8500, "stability": "high" },
+    "credit_readiness": { "has_credit_history": false, "score_band": "none" },
+    "risk_exposure": { "level": "medium" },
+    "legal_exposure": { "level": "medium" },
+    "operational_bandwidth": { "hours_per_week": 35, "reliability": "medium-high" },
+    "capital_availability": { "liquid_usd": 25000, "runway_months": 12 },
+    "knowledge_gaps": ["local-credit-regime", "liability-structure"],
+    "constraints": {
+      "time": { "current_level": 0.53, "required_level": 0.4, "trend": "stable", "evidence_age_days": 5, "confidence": 0.8 },
+      "money": { "current_level": 0.86, "required_level": 0.55, "trend": "stable", "evidence_age_days": 5, "confidence": 0.9 },
+      "knowledge": { "current_level": 0.46, "required_level": 0.65, "trend": "improving", "evidence_age_days": 10, "confidence": 0.72 },
+      "risk": { "current_level": 0.63, "required_level": 0.7, "trend": "stable", "evidence_age_days": 4, "confidence": 0.78 },
+      "legal_exposure": { "current_level": 0.6, "required_level": 0.75, "trend": "degrading", "evidence_age_days": 6, "confidence": 0.79 },
+      "cognitive_load": { "current_level": 0.54, "required_level": 0.5, "trend": "stable", "evidence_age_days": 3, "confidence": 0.81 },
+      "emotional_maturity": { "current_level": 0.71, "required_level": 0.72, "trend": "stable", "evidence_age_days": 2, "confidence": 0.79 }
+    }
+  },
+  {
+    "profile_id": "early-startup-founder",
+    "scenario_label": "early startup founder",
+    "income": { "monthly_usd": 0, "stability": "very-low" },
+    "credit_readiness": { "has_credit_history": "thin", "score_band": "fair" },
+    "risk_exposure": { "level": "high" },
+    "legal_exposure": { "level": "medium-high" },
+    "operational_bandwidth": { "hours_per_week": 65, "reliability": "low" },
+    "capital_availability": { "liquid_usd": 15000, "runway_months": 4 },
+    "knowledge_gaps": ["ownership-structure", "liability-commitments"],
+    "constraints": {
+      "time": { "current_level": 0.24, "required_level": 0.4, "trend": "degrading", "evidence_age_days": 3, "confidence": 0.82 },
+      "money": { "current_level": 0.45, "required_level": 0.55, "trend": "degrading", "evidence_age_days": 6, "confidence": 0.83 },
+      "knowledge": { "current_level": 0.58, "required_level": 0.65, "trend": "stable", "evidence_age_days": 11, "confidence": 0.75 },
+      "risk": { "current_level": 0.49, "required_level": 0.7, "trend": "degrading", "evidence_age_days": 4, "confidence": 0.79 },
+      "legal_exposure": { "current_level": 0.57, "required_level": 0.75, "trend": "degrading", "evidence_age_days": 5, "confidence": 0.8 },
+      "cognitive_load": { "current_level": 0.39, "required_level": 0.5, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.85 },
+      "emotional_maturity": { "current_level": 0.66, "required_level": 0.72, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.79 }
+    }
+  },
+  {
+    "profile_id": "risk-averse-salaried-employee",
+    "scenario_label": "risk-averse salaried employee",
+    "income": { "monthly_usd": 4200, "stability": "high" },
+    "credit_readiness": { "has_credit_history": true, "score_band": "good" },
+    "risk_exposure": { "level": "low" },
+    "legal_exposure": { "level": "low" },
+    "operational_bandwidth": { "hours_per_week": 28, "reliability": "high" },
+    "capital_availability": { "liquid_usd": 9000, "runway_months": 8 },
+    "knowledge_gaps": ["optionality-tradeoffs"],
+    "constraints": {
+      "time": { "current_level": 0.62, "required_level": 0.4, "trend": "stable", "evidence_age_days": 5, "confidence": 0.82 },
+      "money": { "current_level": 0.7, "required_level": 0.55, "trend": "stable", "evidence_age_days": 7, "confidence": 0.86 },
+      "knowledge": { "current_level": 0.6, "required_level": 0.65, "trend": "improving", "evidence_age_days": 12, "confidence": 0.75 },
+      "risk": { "current_level": 0.8, "required_level": 0.7, "trend": "stable", "evidence_age_days": 4, "confidence": 0.83 },
+      "legal_exposure": { "current_level": 0.82, "required_level": 0.75, "trend": "stable", "evidence_age_days": 5, "confidence": 0.87 },
+      "cognitive_load": { "current_level": 0.61, "required_level": 0.5, "trend": "stable", "evidence_age_days": 3, "confidence": 0.82 },
+      "emotional_maturity": { "current_level": 0.77, "required_level": 0.72, "trend": "stable", "evidence_age_days": 2, "confidence": 0.83 }
+    }
+  },
+  {
+    "profile_id": "over-leveraged-borrower",
+    "scenario_label": "over-leveraged borrower",
+    "income": { "monthly_usd": 3300, "stability": "medium" },
+    "credit_readiness": { "has_credit_history": true, "score_band": "fair" },
+    "risk_exposure": { "level": "very-high" },
+    "legal_exposure": { "level": "medium-high" },
+    "operational_bandwidth": { "hours_per_week": 30, "reliability": "medium" },
+    "capital_availability": { "liquid_usd": 500, "runway_months": 0 },
+    "knowledge_gaps": ["debt-restructuring", "legal-guardrails"],
+    "constraints": {
+      "time": { "current_level": 0.43, "required_level": 0.4, "trend": "degrading", "evidence_age_days": 4, "confidence": 0.78 },
+      "money": { "current_level": 0.16, "required_level": 0.55, "trend": "degrading", "evidence_age_days": 6, "confidence": 0.82 },
+      "knowledge": { "current_level": 0.51, "required_level": 0.65, "trend": "improving", "evidence_age_days": 10, "confidence": 0.73 },
+      "risk": { "current_level": 0.41, "required_level": 0.7, "trend": "degrading", "evidence_age_days": 4, "confidence": 0.77 },
+      "legal_exposure": { "current_level": 0.48, "required_level": 0.75, "trend": "degrading", "evidence_age_days": 5, "confidence": 0.78 },
+      "cognitive_load": { "current_level": 0.42, "required_level": 0.5, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.84 },
+      "emotional_maturity": { "current_level": 0.62, "required_level": 0.72, "trend": "degrading", "evidence_age_days": 2, "confidence": 0.77 }
+    }
+  },
+  {
+    "profile_id": "high-income-low-knowledge",
+    "scenario_label": "high-income low-knowledge individual",
+    "income": { "monthly_usd": 11000, "stability": "high" },
+    "credit_readiness": { "has_credit_history": true, "score_band": "good" },
+    "risk_exposure": { "level": "medium-high" },
+    "legal_exposure": { "level": "medium" },
+    "operational_bandwidth": { "hours_per_week": 26, "reliability": "medium" },
+    "capital_availability": { "liquid_usd": 60000, "runway_months": 18 },
+    "knowledge_gaps": ["contract-literacy", "risk-cap-design"],
+    "constraints": {
+      "time": { "current_level": 0.57, "required_level": 0.4, "trend": "stable", "evidence_age_days": 5, "confidence": 0.8 },
+      "money": { "current_level": 0.88, "required_level": 0.55, "trend": "stable", "evidence_age_days": 6, "confidence": 0.91 },
+      "knowledge": { "current_level": 0.33, "required_level": 0.65, "trend": "improving", "evidence_age_days": 9, "confidence": 0.7 },
+      "risk": { "current_level": 0.6, "required_level": 0.7, "trend": "stable", "evidence_age_days": 4, "confidence": 0.78 },
+      "legal_exposure": { "current_level": 0.61, "required_level": 0.75, "trend": "degrading", "evidence_age_days": 6, "confidence": 0.79 },
+      "cognitive_load": { "current_level": 0.58, "required_level": 0.5, "trend": "stable", "evidence_age_days": 3, "confidence": 0.82 },
+      "emotional_maturity": { "current_level": 0.69, "required_level": 0.72, "trend": "stable", "evidence_age_days": 2, "confidence": 0.79 }
+    }
+  }
+]

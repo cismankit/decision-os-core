@@ -827,3 +827,72 @@ Use this template for every update:
   - Rationale: capture parity fixes, certification outcomes, and release-state advancement.
   - Impact: preserves governance traceability for consecutive certification.
   - Migration Notes: maintain one learning record per cycle.
+
+## [0.12.0] - 2026-03-07
+### Changed
+- Artifact: `tools/runner/core.py`
+  - Change Class: `threshold-tuning`
+  - Rationale: add scenario-profile execution path and summary projection output via `run-scenario`.
+  - Impact: realistic scenario states are now executable through CLI without altering engine rules.
+  - Migration Notes: keep scenario output contract stable (`nba_decision`, `gating_reason`, `optionality_delta`, `constraint_deltas`, `projection_summary`).
+
+- Artifact: `tools/README.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: document scenario command usage and scenario-specific output fields.
+  - Impact: operators can run scenario evaluations consistently.
+  - Migration Notes: update examples when runner command surface changes.
+
+- Artifact: `ui-sandbox/src/lib/dataLoader.js`
+  - Change Class: `threshold-tuning`
+  - Rationale: load scenario dataset in addition to regression data.
+  - Impact: sandbox can evaluate both regression and real-scenario profile layers.
+  - Migration Notes: keep local data paths aligned with committed JSON files.
+
+- Artifact: `ui-sandbox/src/lib/evaluator.js`
+  - Change Class: `threshold-tuning`
+  - Rationale: preserve deterministic parity behavior while enabling scenario page execution.
+  - Impact: scenario outputs remain consistent with CLI runner behavior.
+  - Migration Notes: run parity checks after evaluator modifications.
+
+- Artifact: `ui-sandbox/src/App.jsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: add `/scenarios` route to diagnostic navigation.
+  - Impact: scenario simulation is accessible in sandbox UI.
+  - Migration Notes: keep route list synchronized with page components.
+
+### Added
+- Artifact: `simulation/scenario-profiles.yaml`
+  - Change Class: `non-breaking-doc`
+  - Rationale: define realistic human scenario profile layer beyond synthetic regression set.
+  - Impact: expands evaluation realism without changing ontology or node count.
+  - Migration Notes: maintain required scenario dimensions and canonical constraint envelope.
+
+- Artifact: `tools/runner/run-scenario`
+  - Change Class: `non-breaking-doc`
+  - Rationale: provide direct CLI entrypoint for scenario execution.
+  - Impact: enables scenario NBA/projection checks from shell.
+  - Migration Notes: preserve executable wrapper path bootstrapping.
+
+- Artifact: `ui-sandbox/src/pages/ScenariosPage.jsx`
+  - Change Class: `non-breaking-doc`
+  - Rationale: add dedicated UI scenario viewer with current state + NBA + projection timeline.
+  - Impact: improves diagnostic visibility for realistic user states.
+  - Migration Notes: keep page read-only and logic-consumptive.
+
+- Artifact: `ui-sandbox/public/data/scenario-profiles.json`
+  - Change Class: `non-breaking-doc`
+  - Rationale: provide local scenario dataset for sandbox execution without APIs.
+  - Impact: allows deterministic scenario runs in browser.
+  - Migration Notes: sync with `simulation/scenario-profiles.yaml`.
+
+- Artifact: `simulation/cycle-012-scenario-evaluation.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: capture scenario-layer stability outcomes and drift checks.
+  - Impact: provides auditable evidence that scenario layer preserves invariants.
+  - Migration Notes: keep denominator explicit (`X/N`) and list per-scenario outcomes.
+
+- Artifact: `learnings/2026-03-07-cycle-012-scenario-profile-layer.md`
+  - Change Class: `non-breaking-doc`
+  - Rationale: record implementation frictions and invariant outcomes for scenario layer rollout.
+  - Impact: preserves recursive learning continuity.
+  - Migration Notes: maintain one learning record per cycle.

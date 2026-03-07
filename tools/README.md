@@ -42,6 +42,10 @@ python tools/runner/project --profile student-low-buffer-high-urgency --steps 5
 python tools/runner/audit --suite simulation/regression-suite.yaml
 ```
 
+```bash
+python tools/runner/run-scenario --profile student-no-credit
+```
+
 You can also pass a profile file path:
 
 ```bash
@@ -59,6 +63,11 @@ Runner outputs include:
 - `constraint_deltas` (level/confidence/freshness deltas)
 - `optionality_delta`
 - `drift_flags` (`risk_trend`, `loop_detected`)
+
+Scenario output additionally includes:
+
+- `scenario_dimensions`
+- `projection_summary` (5-step timeline + loop/risk/null flags)
 
 ## Self-check
 

@@ -7,6 +7,7 @@ Minimal diagnostic-only sandbox for local WS3 evaluation, with no backend/API ca
 - `/profiles`: select profile from local regression suite
 - `/decision`: view NBA-style output, rationale, and blocked reasons
 - `/projection`: run 1-5 step deterministic projection snapshots
+- `/scenarios`: run realistic scenario profiles and inspect timeline outcomes
 - `/graph`: basic read-only node-edge unlock view
 
 All sandbox data is local and committed under `public/data`.

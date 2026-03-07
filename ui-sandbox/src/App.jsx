@@ -6,16 +6,18 @@ import { DecisionPage } from './pages/DecisionPage'
 import { GraphPage } from './pages/GraphPage'
 import { ProfilesPage } from './pages/ProfilesPage'
 import { ProjectionPage } from './pages/ProjectionPage'
+import { ScenariosPage } from './pages/ScenariosPage'
 
 const ROUTES = [
   { path: '/profiles', label: 'Profiles' },
   { path: '/decision', label: 'Decision' },
   { path: '/projection', label: 'Projection' },
+  { path: '/scenarios', label: 'Scenarios' },
   { path: '/graph', label: 'Graph' },
 ]
 
 function App() {
-  const { profiles, nodes, loading, error } = useSandboxData()
+  const { profiles, scenarioProfiles, nodes, loading, error } = useSandboxData()
   const [selectedProfileId, setSelectedProfileId] = useState('')
   const [lastRun, setLastRun] = useState(null)
   const [projectionSteps, setProjectionSteps] = useState(5)
@@ -100,6 +102,10 @@ function App() {
                 onRunProjection={runProjectionNow}
               />
             }
+          />
+          <Route
+            path="/scenarios"
+            element={<ScenariosPage scenarios={scenarioProfiles} nodes={nodes} />}
           />
           <Route path="/graph" element={<GraphPage nodes={nodes} />} />
           <Route path="*" element={<Navigate to="/profiles" replace />} />

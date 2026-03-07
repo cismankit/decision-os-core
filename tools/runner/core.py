@@ -22,6 +22,7 @@ DEFAULT_PROFILE_FILES = (
     ROOT_DIR / "simulation" / "synthetic-profiles.yaml",
     ROOT_DIR / "simulation" / "cycle-005-long-horizon-profiles.yaml",
     ROOT_DIR / "simulation" / "cycle-008-meta-stress-profiles.yaml",
+    ROOT_DIR / "simulation" / "scenario-profiles.yaml",
 )
 DECISION_GRAPH_FILE = ROOT_DIR / "graph" / "universal-decision-nodes.yaml"
 
@@ -365,6 +366,67 @@ def project_command(profile_ref: str, steps: int) -> int:
     return 0
 
 
+def run_scenario_command(profile_ref: str, steps: int = 5) -> int:
+    if steps <= 0:
+        raise ValueError("--steps must be greater than 0")
+    profile = load_profile(profile_ref)
+    scenario_dimensions = {
+        "income": profile.get("income", {}),
+        "credit_readiness": profile.get("credit_readiness", {}),
+        "risk_exposure": profile.get("risk_exposure", {}),
+        "legal_exposure": profile.get("legal_exposure", {}),
+        "operational_bandwidth": profile.get("operational_bandwidth", {}),
+        "capital_availability": profile.get("capital_availability", {}),
+        "knowledge_gaps": profile.get("knowledge_gaps", []),
+    }
+
+    nba = choose_decision(profile)
+    state = profile
+    prior_decisions: List[str] = []
+    projection: List[Dict[str, Any]] = []
+    risk_up_steps = 0
+    loop_emergence = False
+    null_nba = 0
+    for step in range(1, min(steps, 5) + 1):
+        chosen = choose_decision(state, prior_decisions=prior_decisions)
+        prior_decisions.append(chosen.decision_id)
+        if chosen.drift_flags.get("risk_trend") == "risk-up":
+            risk_up_steps += 1
+        if len(prior_decisions) >= 3 and len(set(prior_decisions[-3:])) == 1:
+            loop_emergence = True
+        if not chosen.decision_id:
+            null_nba += 1
+        projection.append(
+            {
+                "step": step,
+                "chosen_decision": chosen.decision_id,
+                "gating_reason": chosen.gating_reason,
+                "optionality_delta": chosen.optionality_delta,
+                "drift_flags": chosen.drift_flags,
+            }
+        )
+        state = _apply_projection_update(state, chosen)
+
+    output = {
+        "profile_id": profile.get("profile_id"),
+        "scenario_label": profile.get("scenario_label"),
+        "scenario_dimensions": scenario_dimensions,
+        "nba_decision": nba.decision_id,
+        "gating_reason": nba.gating_reason,
+        "optionality_delta": nba.optionality_delta,
+        "constraint_deltas": nba.constraint_deltas,
+        "projection_summary": {
+            "steps": min(steps, 5),
+            "risk_concentration": risk_up_steps >= 3,
+            "loop_emergence": loop_emergence,
+            "null_nba": null_nba,
+            "timeline": projection,
+        },
+    }
+    _print_json(output)
+    return 0
+
+
 def _suite_cases(raw_suite: Any) -> List[Dict[str, Any]]:
     if isinstance(raw_suite, dict):
         maybe_cases = raw_suite.get("cases")
@@ -468,6 +530,10 @@ def build_parser() -> argparse.ArgumentParser:
     audit = subparsers.add_parser("audit", help="Run deterministic suite audit")
     audit.add_argument("--suite", required=True, help="YAML suite path")
 
+    run_scenario = subparsers.add_parser("run-scenario", help="Run scenario profile with NBA + 5-step summary")
+    run_scenario.add_argument("--profile", required=True, help="Scenario profile id from simulation/scenario-profiles.yaml")
+    run_scenario.add_argument("--steps", type=int, default=5, help="Projection steps (max 5)")
+
     subparsers.add_parser("self-check", help="Run built-in deterministic self-check")
     return parser
 
@@ -482,6 +548,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             return project_command(args.profile, args.steps)
         if args.command == "audit":
             return audit_command(args.suite)
+        if args.command == "run-scenario":
+            return run_scenario_command(args.profile, args.steps)
         if args.command == "self-check":
             return self_check_command()
     except (FileNotFoundError, RuntimeError, ValueError) as exc:
